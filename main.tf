@@ -69,27 +69,27 @@ resource "aws_instance" "web" {
   key_name      = aws_key_pair.deployer.key_name
   security_groups = ["Allow_web_traffic"]
   #vpc_security_group_ids = [aws_security_group.web-traffic.id]
-  /*
   provisioner "remote-exec" {
     connection {
       host = self.public_ip
-      user = "ec2-user"
+      user = "ubuntu"
       type = "ssh"
       private_key = tls_private_key.private-key.private_key_pem
     }
     inline = [
+      "sudo ufw allow 8080",
       "wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -",
       "sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'",
       "sudo apt update -qq",
       "sudo apt install software-properties-common",
       "sudo apt-add-repository --yes --update ppa:ansible/ansible",
-      "sudo apt install -y jenkins ansible maven git default-jre",
+      "sudo apt install -y default-jre",
+      "sudo apt install -y maven git ",
+      "sudo apt install -y jenkins ansible ",
       "sudo systemctl start jenkins",
-      "sudo ufw allow 8080",
 
     ]
   }
-  */
   tags = {
     Name = "master-control-server"
     Terraform = "true"
