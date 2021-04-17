@@ -1,0 +1,16 @@
+#Create directory
+mkdir ~/end1
+touch main.tf
+touch variables.tf
+touch output.tf
+terraform init
+terraform plan
+terraform apply
+#Modify main.tf
+  #Configure Credentials
+  #Create Security Groups
+  #Install jenkins, ansible, maven, git
+
+#TODO
+#Clone git repo with playbook and code for building
+#Modify jenkins, add playbook
