@@ -12,5 +12,4 @@ terraform apply
   #Install jenkins, ansible, maven, git
 
 #TODO
-#Clone git repo with playbook and code for building
-#Modify jenkins, add playbook
+#Modify jenkins, copy playbook to instance, add playbook

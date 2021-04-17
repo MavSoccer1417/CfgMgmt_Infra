@@ -33,8 +33,8 @@ data "aws_ami" "ubuntu" {
   owners = ["099720109477"] # Canonical
 }
 
-resource "aws_security_group" "web_traffic" {
-  name        = "Allow web traffic"
+resource "aws_security_group" "web-traffic" {
+  name        = "Allow_web_traffic"
   description = "Allow ssh and standard http/https ports inbound and everything outbound"
 
   dynamic "ingress" {
@@ -55,17 +55,21 @@ resource "aws_security_group" "web_traffic" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+
   tags = {
-    "Terraform" = "true"
+    Name = "Web-SG-Group"
+    Environment = terraform.workspace
   }
+
 }
 
 resource "aws_instance" "web" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = "t2.micro"
   key_name      = aws_key_pair.deployer.key_name
-  security_groups = [aws_security_group.web_traffic.id]
-
+  security_groups = ["Allow_web_traffic"]
+  #vpc_security_group_ids = [aws_security_group.web-traffic.id]
+  /*
   provisioner "remote-exec" {
     connection {
       host = self.public_ip
@@ -85,6 +89,7 @@ resource "aws_instance" "web" {
 
     ]
   }
+  */
   tags = {
     Name = "master-control-server"
     Terraform = "true"
