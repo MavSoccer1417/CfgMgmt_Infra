@@ -6,6 +6,6 @@ node  {
   }
   stage('Build with Maven') {
   }
-  state('Deploy with Ansible') {
+  stage('Deploy with Ansible') {
   }
 }
