@@ -10,6 +10,12 @@ terraform apply
   #Configure Credentials
   #Create Security Groups
   #Install jenkins, ansible, maven, git
+  
+  
+#TODO Install ansible plugin to jenkins
+ java -jar jenkins-cli.jar -s http://127.0.0.1:8080/ install-plugin <name>
+#TODO Install maven plugin to jenkins
+ java -jar jenkins-cli.jar -s http://127.0.0.1:8080/ install-plugin <name>
 
 #TODO
 #Modify jenkins, copy playbook to instance, add playbook
