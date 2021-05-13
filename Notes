@@ -1,3 +1,4 @@
+1. Configure Jenkins server as Ansible provisioning machine
 #Create directory
 mkdir ~/end1
 touch main.tf
@@ -11,11 +12,16 @@ terraform apply
   #Create Security Groups
   #Install jenkins, ansible, maven, git
   
-  
+2. Install Ansible plugins in Jenkins CI server
 #TODO Install ansible plugin to jenkins
  java -jar jenkins-cli.jar -s http://127.0.0.1:8080/ install-plugin <name>
 #TODO Install maven plugin to jenkins
  java -jar jenkins-cli.jar -s http://127.0.0.1:8080/ install-plugin <name>
 
+3. Prepare Ansible playbook to run Maven build on Jenkins CI server
+  Ansible will kick off jenkins build
+4. Prepare Ansible playbook to execute deployment steps on the remote web container with restart of the web container post deployment
+Create apache2.yaml
 #TODO
 #Modify jenkins, copy playbook to instance, add playbook
+
