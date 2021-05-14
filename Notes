@@ -1,4 +1,5 @@
 1. Configure Jenkins server as Ansible provisioning machine
+Use Terra form to create AWS servers.  1 for jenkins, 1 for web-servers
 wget https://releases.hashicorp.com/terraform/0.15.0/terraform_0.15.0_linux_amd64.zip
 unzip terraform_0.15.0_linux_amd64.zip 
 sudo mv terraform /usr/bin/terraform
@@ -15,7 +16,7 @@ touch main.tf
 touch variables.tf
 touch output.tf
 
-#Modify main.tf
+#Modify main.tf - Code stored in http://github.com/MavSoccer1417/CfgMgmt_Infra
   #Create Security Groups
   #Install jenkins, ansible, maven, git
 #modify variables.tf
@@ -45,7 +46,7 @@ terraform apply
 2. Install Ansible plugins in Jenkins CI server
 #Log into Jenkins
 #Install Maven, ansible plugins
-#Create Maven Job to build war file and run ansisble war script
+#Create Maven Job to build war file and run ansisble install_war.yml
 #
 
 3. Prepare Ansible playbook to run Maven build on Jenkins CI server
