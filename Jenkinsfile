@@ -15,6 +15,9 @@ pipeline  {
     }  
    
     stage('Deploy with Ansible') {
+      steps {
+        echo "Deploy"
+      }
     }
   }
 }
