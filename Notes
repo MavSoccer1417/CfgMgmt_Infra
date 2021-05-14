@@ -45,13 +45,13 @@ terraform apply
 2. Install Ansible plugins in Jenkins CI server
 #Log into Jenkins
 #Install Maven, ansible plugins
-#Create Maven Job to build war file
-
+#Create Maven Job to build war file and run ansisble war script
+#
 
 3. Prepare Ansible playbook to run Maven build on Jenkins CI server
   Ansible will kick off jenkins build
 4. Prepare Ansible playbook to execute deployment steps on the remote web container with restart of the web container post deployment
-Create apache2.yaml
-#TODO
-#Modify jenkins, copy playbook to instance, add playbook
-
+edit /etc/ansible/hosts and add web-server
+Create apache2.yaml to install apache on web-server
+ansible-playbook apache2.yml
+Create install_war.yml to update war and restart
