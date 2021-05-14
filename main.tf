@@ -100,3 +100,34 @@ resource "aws_instance" "web" {
     command = "terraform output private-key | sed '1d' | sed '28d' > ~/.ssh/endofclass.pem; chmod 600 ~/.ssh/endofclass.pem"
   }
 }
+resource "aws_instance" "web" {
+  ami           = data.aws_ami.ubuntu.id
+  instance_type = "t2.micro"
+  key_name      = aws_key_pair.deployer.key_name
+  security_groups = ["Allow_web_traffic"]
+  #vpc_security_group_ids = [aws_security_group.web-traffic.id]
+  provisioner "remote-exec" {
+    connection {
+      host = self.public_ip
+      user = "ubuntu"
+      type = "ssh"
+      private_key = tls_private_key.private-key.private_key_pem
+    }
+    inline = [
+      "sudo apt update -qq",
+      "sudo apt install software-properties-common",
+      "sudo apt install -y default-jre",
+      "sudo apt install -y maven git ",
+
+    ]
+  }
+  tags = {
+    Name = "web-server"
+    Terraform = "true"
+  }
+
+ 
+  provisioner "local-exec" {
+    command = "terraform output private-key | sed '1d' | sed '28d' > ~/.ssh/webserver.pem; chmod 600 ~/.ssh/webserver.pem"
+  }
+}
