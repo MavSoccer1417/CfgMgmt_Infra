@@ -1,16 +1,37 @@
 1. Configure Jenkins server as Ansible provisioning machine
 #Create directory
 mkdir ~/end1
+cd ~/end1
 touch main.tf
 touch variables.tf
 touch output.tf
+
+#Modify main.tf
+  #Create Security Groups
+  #Install jenkins, ansible, maven, git
+#modify variables.tf
+  #create port list ingress rule
+#modify output.tf
+  #create ssh key output
+  
+#Configure Credentials
+  mkdir ~/.aws
+  cat << EOF >> ~/.aws/credentials
+  [default]
+  aws_access_key_id = <REPLACE ACCESS_KEY>                               
+  aws_secret_access_key = <REPLACE SECRET_KEY>
+  aws_session_token = <REPLACE SESSION_TOKEN >
+  EOF
+  cat << EOF >> ~/.aws/config
+  [default]
+    region=us-east-1
+    output=json
+  EOF
+  
 terraform init
 terraform plan
 terraform apply
-#Modify main.tf
-  #Configure Credentials
-  #Create Security Groups
-  #Install jenkins, ansible, maven, git
+
   
 2. Install Ansible plugins in Jenkins CI server
 #TODO Install ansible plugin to jenkins
