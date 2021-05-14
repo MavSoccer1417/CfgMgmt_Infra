@@ -1,4 +1,13 @@
 1. Configure Jenkins server as Ansible provisioning machine
+wget https://releases.hashicorp.com/terraform/0.15.0/terraform_0.15.0_linux_amd64.zip
+unzip terraform_0.15.0_linux_amd64.zip 
+sudo mv terraform /usr/bin/terraform
+
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
+
+
 #Create directory
 mkdir ~/end1
 cd ~/end1
@@ -15,18 +24,18 @@ touch output.tf
   #create ssh key output
   
 #Configure Credentials
-  mkdir ~/.aws
-  cat << EOF >> ~/.aws/credentials
-  [default]
+mkdir ~/.aws
+cat << EOF >> ~/.aws/credentials
+[default]
   aws_access_key_id = <REPLACE ACCESS_KEY>                               
   aws_secret_access_key = <REPLACE SECRET_KEY>
   aws_session_token = <REPLACE SESSION_TOKEN >
-  EOF
-  cat << EOF >> ~/.aws/config
-  [default]
-    region=us-east-1
-    output=json
-  EOF
+EOF
+cat << EOF >> ~/.aws/config
+[default]
+  region=us-east-1
+  output=json
+EOF
   
 terraform init
 terraform plan
@@ -34,10 +43,10 @@ terraform apply
 
   
 2. Install Ansible plugins in Jenkins CI server
-#TODO Install ansible plugin to jenkins
- java -jar jenkins-cli.jar -s http://127.0.0.1:8080/ install-plugin <name>
-#TODO Install maven plugin to jenkins
- java -jar jenkins-cli.jar -s http://127.0.0.1:8080/ install-plugin <name>
+#Log into Jenkins
+#Install Maven, ansible plugins
+#Create Maven Job to build war file
+
 
 3. Prepare Ansible playbook to run Maven build on Jenkins CI server
   Ansible will kick off jenkins build
