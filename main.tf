@@ -100,7 +100,7 @@ resource "aws_instance" "web" {
     command = "terraform output private-key | sed '1d' | sed '28d' > ~/.ssh/endofclass.pem; chmod 600 ~/.ssh/endofclass.pem"
   }
 }
-resource "aws_instance" "web" {
+resource "aws_instance" "web2" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = "t2.micro"
   key_name      = aws_key_pair.deployer.key_name
